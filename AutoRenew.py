@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 def file_search(path="C:\\"):
 
 	folder_name="Acrobat 2017"
+	file_name="application.xml"
 	file_location=""    
 
 	print("\n----------------------------------------------------------")
@@ -14,8 +15,8 @@ def file_search(path="C:\\"):
 	for root,dirs,files in os.walk(path):
 		if folder_name in dirs:
 			for root,dirs,files in os.walk(os.path.join(root,folder_name)):
-				if "application.xml" in files:
-					file_location=str(os.path.join(root,"application.xml"))
+				if file_name in files:
+					file_location=str(os.path.join(root,file_name))
 					return file_location
 
 	if file_location=="":
