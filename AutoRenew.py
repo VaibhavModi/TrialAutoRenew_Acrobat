@@ -7,17 +7,17 @@ def file_search(path="C:\\"):
 	folder_name="Acrobat 2017"
 	file_name="application.xml"
 	file_location=""    
+	path_track=""
 
-	print("\n","".center(70,"-"))
+	print("".center(70,"-"))
 	print("\nSearching for the application folder location in...") 
 	print(path+"...")
 
 	for root,dirs,files in os.walk(path):
-		if folder_name in dirs:
-			for root,dirs,files in os.walk(os.path.join(root,folder_name)):
-				if file_name in files:
-					file_location=str(os.path.join(root,file_name))
-					return file_location
+		if file_name in files:
+			if folder_name in root:
+				file_location=str(os.path.join(root,file_name))
+				return file_location
 
 	if file_location=="":
 		print("\n## Could not find the Adobe installation folder in {}".format(path))
@@ -32,10 +32,10 @@ if __name__ == "__main__":
 	print("".center(70,"-"),"\n")
 	print("""This is a tool to renew Adobe Acrobat 2017 trial period incase someone has missed 
 the opportunity to get the real trial out of it. (For Educational Purpose Only)\n""")
-	input("Press Enter to continue...")
+	input("Press Enter to continue...\n")
 	time.sleep(2)
 	file_location=file_search()
-	print("\nFile has been found: "+file_location)  
+	print("\nFile has been found: "+file_location,'\n')  
 
 
 #parsing XML document to read and modify the data..
@@ -49,18 +49,18 @@ try:
 	tree.write(file_location)
 
 except Exception as e:
-	print("\n","".center(70,"-"))
+	print("".center(70,"-"))
 	time.sleep(2)
 	print("\n## Encountered an Error! Try the following: ")
 	time.sleep(1)
 	print("\n",e)
 	print("\nTo Do:\n1. Try running the script with administrator privilege")
-	print("""2. Rerun the script and make sure the drive location is correct. 
-Installation of Acrobat is preferred in default C:\\ drive!""")
+	print("\n".join(textwrap.wrap("2. Rerun the script and make sure the drive location is correct. Installation of Acrobat is preferred in default C:\\ drive!",90)))
 	input("\nPress Enter to exit...")
+	os.system('cls')
 
 else:
-	print("\n","".center(70,"-"),"\n")
+	print("".center(70,"-"),"\n")
 	time.sleep(2)
 	print("--- SUCCESSFULL!!! Your 07 Days trial has been renewed with the new TrialSerialNumber - {}".format(root[0][8].text))
 	print("\n --> Now launch Acrobat 2017, wait for sign in page, sign in.. have fun!")
