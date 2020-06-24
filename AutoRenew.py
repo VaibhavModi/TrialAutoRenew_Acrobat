@@ -101,7 +101,6 @@ def success_handling():
 
 #Starting of the program.. 
 if __name__ == "__main__":
-	
 	try:
 		root_check()
 		choices()
