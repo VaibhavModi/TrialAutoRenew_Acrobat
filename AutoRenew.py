@@ -73,7 +73,7 @@ def serialkey_changer():
 	root = tree.getroot()
 
 	#Changing the Trial Serial number..
-	new_trial=int(root[0][8].text)+1
+	new_trial=int(root[0][8].text)+100
 	root[0][8].text=str(new_trial)
 	tree.write(file_location)
 
